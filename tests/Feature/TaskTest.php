@@ -26,4 +26,25 @@ class TaskTest extends TestCase
             ->assertJsonCount($tasks->count());
 
     }
+
+    /**
+     *
+     * @test
+     */
+    public function 登録することができる()
+    {
+        $data = [
+            'title' => 'テスト投稿'
+        ];
+
+        $response = $this->postJson('api/tasks', $data);
+
+        // dd($response->json());
+
+        $response
+            ->assertCreated()
+            ->assertJsonFragment($data);
+
+    }
+
 }
