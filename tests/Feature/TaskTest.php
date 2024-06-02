@@ -5,13 +5,24 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Task;
-use Facade\Ignition\Tabs\Tab;
+use App\Models\User;
 
 use function PHPUnit\Framework\assertJson;
 
 class TaskTest extends TestCase
 {
     use RefreshDatabase;
+
+    public function setUp():void
+    {
+        parent::setUp();
+
+        // ユーザーの作成
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+    }
+
     /**
      *
      * @test
