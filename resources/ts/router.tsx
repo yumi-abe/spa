@@ -4,8 +4,8 @@ import {
     Switch,
     Route,
     Link,
-    RouterProps,
-    Redirect
+    Redirect,
+    RouteProps
   } from "react-router-dom";
 import TaskPage from "./pages/tasks";
 import HelpPage from "./pages/help";
@@ -26,12 +26,12 @@ const Router = () => {
     }
   }, [authUser])
   
-  const GuardRoute = (props: RouterProps) => {
+  const GuardRoute = (props: RouteProps) => {
     if (!isAuth) return <Redirect to="/login" />
     return <Route {...props} />
   }
 
-  const LoginRoute = (props: RouterProps) => {
+  const LoginRoute = (props: RouteProps) => {
     if (isAuth) return <Redirect to="/" />
     return <Route {...props} />
   }
